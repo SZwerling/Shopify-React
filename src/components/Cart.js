@@ -17,15 +17,15 @@ import {
   SimpleGrid,
   Link
 } from "@chakra-ui/react"
-import { CloseIcon } from '@chakra-ui/icons'
+import { CloseIcon, RepeatClockIcon } from '@chakra-ui/icons'
 
 
 
 const Cart = () => {
 
   const { isCartOpen, closeCart, checkout, removeLineItem } = useContext(ShopContext)
-
-
+console.log(checkout)
+    
   return (
     <>
       <Drawer isOpen={isCartOpen} onClose={closeCart} placement="right" size="sm">
@@ -34,7 +34,8 @@ const Cart = () => {
             <DrawerCloseButton />
             <DrawerHeader>Your Shopping Cart</DrawerHeader>
             <DrawerBody>
-              {checkout?.lineItems?.length ?
+            {checkout?.lineItems?.length ?
+            
                 <SimpleGrid columns={1} spacing={10}>
                   {checkout.lineItems && checkout.lineItems.map(item => (
                     <Grid templateColumns="repeat(4, 1fr)" gap={1} key={item.id}>
@@ -54,7 +55,7 @@ const Cart = () => {
                       </Box>
                       <Box>
                         <Text height="100%" display="flex" align="center" justifyContent="center">
-                          {item.variant.price}
+                          {item.variant.price.amount}
                         </Text>
                       </Box>
                     </Grid>

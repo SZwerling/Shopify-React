@@ -10,10 +10,11 @@ const client = Client.buildClient({
 });
 
 
+
 class ShopProvider extends Component {
   state = {
     products: [],
-    product: {},
+    product: null,
     checkout: {},
     isCartOpen: false,
     isMenuOpen: false
@@ -71,12 +72,9 @@ class ShopProvider extends Component {
     this.setState({ products: products });
   };
 
-  
-
   fetchProductWithHandle = async (handle) => {
     const product = await client.product.fetchByHandle(handle);
     this.setState({ product: product });
-
     return product;
   };
 
